@@ -5,9 +5,11 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 import { ConversationChain } from "langchain/chains";
 import { UpstashRedisChatMessageHistory } from "langchain/stores/message/upstash_redis";
 import { config } from "dotenv";
+import cors from "cors";
 config();
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/process-input", async (req, res) => {
