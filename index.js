@@ -48,14 +48,14 @@ app.post("/process-input", async (req, res) => {
 
   try {
     const response = await chain.call({ input });
-    res.json({ response });
+    return res.json({ response });
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ error: error.message });
   }
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello from server");
+  return res.send("Hello from server");
 });
 
 const PORT = process.env.PORT || 3000;
